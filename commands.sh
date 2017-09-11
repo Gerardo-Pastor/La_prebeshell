@@ -35,8 +35,6 @@ case $1 in
 		done
 	;;
 	"busca")
-		
-
 		echo -e "$azul Introduce el nombre de un archivo que quieras buscar : $r"
 		read archivo
 		echo -e "$azul Introduce la ruta en la que quieres buscar ese arhchivo: $r" 
@@ -48,20 +46,16 @@ case $1 in
 		else
 			echo -e "$rojo No hay ningun archivo con ese nombre , no existe $r"
 		fi
-     ;;
+     	;;
 	"hora" )
-	echo -n -e "$rojo La hora actual es: $r";
-	cat /proc/driver/rtc | egrep -o -m 1 [0-9]{2}+":"+[0-9]{2}+":"+[0-9]{2}	
+		echo -n -e "$rojo La hora actual es: $r";
+		cat /proc/driver/rtc | egrep -o -m 1 [0-9]{2}+":"+[0-9]{2}+":"+[0-9]{2}	
 	;;
-
 	"fecha")
-	echo -n -e "$azul La fecha actual es: $r"
-	cat /proc/driver/rtc | egrep -o -m 1 [0-9]{4}+"-"+[0-9]{2}+"-"+[0-9]{2}
-
+		echo -n -e "$azul La fecha actual es: $r"
+		cat /proc/driver/rtc | egrep -o -m 1 [0-9]{4}+"-"+[0-9]{2}+"-"+[0-9]{2}
 	;;
-
 	"ayuda " )
-	
 	echo -e "$verde El comando ayuda te trae a este archivo :v $r"
 	echo -e "$azul El comando  busca te ayuda a encontrar un archivo en el sistema debes pasarle 2 parametros el nombre del archivo y la ruta  $r"
 	echo -e "$verde El comando hora te muestra la hora actual del sistema  $r"
@@ -73,12 +67,37 @@ case $1 in
 	echo -e "$verde El comando pong te lleva al juego del pong xD  $r"
 	echo -e "$azul El comando prebeplayer te dirige a la prebeplayer donde podras reproducir musica :3 $r"
 	echo -e "$verde El comando salir te saca de aqui alv   $r"
-
 	;;
-
 	"creditos")
 		echo -e "\n\t\tLa Prebeshell "
 		echo -e "${rojo}Hecho por:"
 		echo -e "\t${azul}Jose Alejandro Montecillo Sandoval \n\tGerardo Alonso Pastor Olivera\n"
 	;;
+	"arbol")
+		declare -i DIM=0;
+	arbolito(){
+	    cd "$1";
+	    for archivo in *
+	    do
+		printf "\e[1;35m>";
+		printf  "\e[0m";
+		for ((i=0; $i < DIM; i++))
+		do
+		    printf "\e[32m-";
+		    printf "\e[0m";
+		done
+		if [ -d "$archivo" ]; then
+		    printf "\e[1;36m";
+		else
+		    printf "\e[1;33m";
+		fi
+		printf "$archivo\e[0m\n";
+		if [ -d "$archivo" ]
+		then
+		    DIM=$DIM+1;
+		    arbolito "$archivo";
+		    cd ..;
+		fi
+	    done
+	 }
 esac
