@@ -33,21 +33,21 @@ while [ $fails != 0 ]; do         #salir o equivocarse 3 vece
             while [ 1 ];do                                  #Comandos a ingresar
                 printf "\033[01;34mPrebeShell@$usar: $PWD \033[01;33m" 
                 read  command
+                current=$PWD
                 cd $base
                 case "$command" in
-                    "ayuda")        ./commands.sh ayuda          ;;
-                    "infosis")      ./commands.sh infosys        ;;
-                    "arbol")        ./commands.sh arbol $base    ;;
-                    "fecha")        ./commands.sh fecha          ;;
-                    "hora")         ./commands.sh hora           ;;
-                    "busca")        ./commands.sh busca          ;;
-                    "pong")         ./pong.sh                    ;;
-                    "gato")         ./gato.sh                    ;;
-                    "creditos")     ./commands.sh creditos       ;;
-                    "prebeplayer")  ./PrebePlayer.sh $current    ;;
-                    "salir")        exit 1                       ;;
-                    *)              cd $current 
-                                    $command; current=$PWD       ;;
+                    'ayuda')        ./commands.sh ayuda          ;;
+                    'infosys')      ./commands.sh infosys $pswd  ;;
+                    'arbol')        ./commands.sh arbol $base    ;;
+                    'fecha')        ./commands.sh fecha          ;;
+                    'hora')         ./commands.sh hora           ;;
+                    'busca')        ./commands.sh busca          ;;
+                    'pong')         ./pong.sh                    ;;
+                    'gato')         ./gato.sh                    ;;
+                    'creditos')      ./commands.sh creditos      ;;
+                    'prebeplayer')  ./PrebePlayer.sh $pswd       ;;
+                    'salir')        exit 1                       ;;
+                    *)              cd $current; $command        ;;
                 esac
                 cd $current
             done
@@ -60,4 +60,4 @@ while [ $fails != 0 ]; do         #salir o equivocarse 3 vece
         let fails--
     fi
 done
-echo -e "\n\033[01;33m\n Adios perro \n"
+echo -e "\n\033[01;33m\n Adios perro \n"  
