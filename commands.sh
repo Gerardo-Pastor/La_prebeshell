@@ -2,7 +2,7 @@
 amarillo="\e[1;33m"
 rojo="\e[1;31m"
 azul="\e[1;34m"
-verde="\e[1;37m"
+verde="\e[1;32m"
 r="\e[0m"
 case $1 in
 	"infosys") 
