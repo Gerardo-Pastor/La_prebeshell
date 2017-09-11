@@ -83,7 +83,11 @@ case $1 in
 	;;
 	"arbol")
  		declare -i DIM=0;
- 	arbolito(){
+		arbolito $1
+ 	;;
+
+esac
+arbolito(){
  	    cd "$1";
  	    for archivo in *
  	    do
@@ -107,5 +111,4 @@ case $1 in
  		    cd ..;
  		fi
  	    done
- 	 }
-esac
+}
